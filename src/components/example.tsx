@@ -10,3 +10,5 @@ const Title = styled.h1<{ color: string }>`
 const app: React.FC = () => {
   return <Title color={"red"} />;
 };
+
+export default app;
