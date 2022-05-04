@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import img from "../img/search.svg"
-// import axios from "axios";
 import { useState } from "react";
 
 const SearchBar = styled.input`
