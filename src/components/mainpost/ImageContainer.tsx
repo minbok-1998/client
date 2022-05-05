@@ -6,19 +6,19 @@ interface propsType {
   silderCount: number;
 }
 
-const ImageBox = styled.div<{ silderCount: number }>`
+const ImageBox = styled.div<{ sliderCount: number }>`
   width: 142px;
   height: 134px;
   background-color: #e5e5e5;
   margin: 0 14px 0 0;
   flex-shrink: 0;
-  ${({ silderCount }) =>
-    silderCount === 1 &&
+  ${({ sliderCount }) =>
+    sliderCount === 1 &&
     css`
       transform: translateX(-156px);
     `}
-  ${({ silderCount }) =>
-    silderCount === 2 &&
+  ${({ sliderCount }) =>
+    sliderCount === 2 &&
     css`
       transform: translateX(-312px);
     `}
@@ -36,7 +36,7 @@ export default function ImageContainer({
   silderCount,
 }: propsType): JSX.Element {
   return (
-    <ImageBox silderCount={silderCount}>
+    <ImageBox sliderCount={silderCount}>
       <MyImg src={url} alt={"필요할까?"} />
     </ImageBox>
   );
