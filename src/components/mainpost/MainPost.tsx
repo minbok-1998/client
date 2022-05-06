@@ -10,7 +10,8 @@ import { HiOutlineHeart } from "react-icons/hi";
 import ImageContainer from "./ImageContainer";
 import CommentInput from "./CommentInput";
 
-interface PropsType {
+export interface PropsType {
+  postId: string;
   author: string;
   title: string;
   content: string;
@@ -37,7 +38,7 @@ const Inner = styled.div`
   margin: 0 auto;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   display: inline-block;
   box-sizing: border-box;
   color: #00964a;
@@ -46,11 +47,10 @@ const Title = styled.h1`
   font-size: 18px;
   width: 300px;
   height: 26px;
-  margin-top: 0;
   margin: 0 auto;
 `;
 
-const Author = styled.p`
+export const Author = styled.p`
   position: absolute;
   display: inline-block;
   box-sizing: border-box;
@@ -64,7 +64,7 @@ const Author = styled.p`
   margin: 0 auto;
 `;
 
-const Content = styled.p`
+export const Content = styled.p`
   box-sizing: border-box;
   font-weight: 400;
   line-height: 18.82px;
@@ -80,7 +80,7 @@ const SlideWrapper = styled.div`
   overflow: hidden;
 `;
 
-const ArrowContainer = styled.div<{ pos: "left" | "right" }>`
+export const ArrowContainer = styled.div<{ pos: "left" | "right" }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,7 +112,6 @@ const BelowInner = styled.div`
   box-sizing: border-box;
   width: 488px;
   padding: 0;
-  background-color: skyblue;
   color: #00964a;
   font-size: 12px;
   margin: 8px auto;
@@ -147,6 +146,7 @@ const Line = styled.div`
 `;
 
 export default function MainPost({
+  postId,
   author,
   title,
   content,
@@ -156,11 +156,11 @@ export default function MainPost({
 }: PropsType): JSX.Element {
   const [sliderCount, setSliderCount] = useState<number>(0);
 
-  const handleSliderToLeft = () => {
+  const handleSliderToLeft = (): void => {
     setSliderCount((prev) => prev - 1);
   };
 
-  const handleSliderToRight = () => {
+  const handleSliderToRight = (): void => {
     setSliderCount((prev) => prev + 1);
   };
 

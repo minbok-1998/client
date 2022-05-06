@@ -28,11 +28,11 @@ const MyImPlay3 = styled(ImPlay3)`
 export default function CommentInput(): JSX.Element {
   const [comment, setComment] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setComment(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     // axios.post("uri", {
     //   userId: "",
     //   postId: "",
@@ -41,7 +41,7 @@ export default function CommentInput(): JSX.Element {
     alert(comment);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === "Enter") {
       // axios.post("uri", {
       //   userId: "",
