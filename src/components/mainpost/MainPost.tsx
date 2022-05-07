@@ -17,7 +17,7 @@ export interface PropsType {
   content: string;
   imgUrl: string[];
   like: number;
-  comment: string[];
+  comment: { author: string; content: string }[];
 }
 
 const Wrapper = styled.div`
@@ -172,7 +172,7 @@ export default function MainPost({
         <Content>{content}</Content>
         <SlideWrapper>
           {imgUrl.map((url, index) => (
-            <ImageContainer url={url} key={index} silderCount={sliderCount} />
+            <ImageContainer url={url} key={index} sliderCount={sliderCount} />
           ))}
         </SlideWrapper>
         {sliderCount > 0 && (

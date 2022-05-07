@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import {
   Title,
   Author,
@@ -10,6 +10,8 @@ import {
 import { IoClose } from "react-icons/io5";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { HiOutlineHeart } from "react-icons/hi";
+import DetailCommentInput from "./DetailCommentInput";
+import Comment from "./Comment";
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -20,14 +22,14 @@ const Wrapper = styled.div`
   border-radius: 20px;
   margin: 20px auto;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
   //border: 2px solid yellow;
 `;
 
 const Inner = styled.div`
   position: relative;
   width: 613px;
-  height: 900px;
+  height: auto;
   margin: 0 auto;
 `;
 
@@ -69,37 +71,13 @@ const ImgWrapper = styled.div`
   overflow: hidden;
 `;
 
-const ImageBox = styled.div<{ sliderCount: number }>`
+const ImageBox = styled.div<{ transformWidth: string }>`
   width: 613px;
   height: 362px;
   background-color: #e5e5e5;
   flex-shrink: 0;
-  ${({ sliderCount }) =>
-    sliderCount === 1 &&
-    css`
-      transform: translateX(-613px);
-    `}
-  ${({ sliderCount }) =>
-    sliderCount === 2 &&
-    css`
-      transform: translateX(-1226px);
-    `}
-  ${({ sliderCount }) =>
-    sliderCount === 3 &&
-    css`
-      transform: translateX(-1839px);
-    `}
-  ${({ sliderCount }) =>
-    sliderCount === 4 &&
-    css`
-      transform: translateX(-2452px);
-    `}
-  ${({ sliderCount }) =>
-    sliderCount === 5 &&
-    css`
-      transform: translateX(-3065px);
-    `}
-  transition: .5s;
+  transform: translateX(${(props) => props.transformWidth});
+  transition: 0.5s;
 `;
 
 const MyImg = styled.img`
@@ -109,7 +87,8 @@ const MyImg = styled.img`
 `;
 
 const DetailArrowContainer = styled(ArrowContainer)`
-  bottom: 530px;
+  bottom: 220px;
+  color: #000;
 `;
 
 const BelowInner = styled.div`
@@ -152,6 +131,18 @@ const Line = styled.div`
   top: 42px;
 `;
 
+const CommentBox = styled.div`
+  margin-top: 28px;
+`;
+
+const OpenIt = styled.div`
+  width: 90px;
+  font-size: 12px;
+  margin: 13px auto 0;
+  padding: 8px;
+  cursor: pointer;
+`;
+
 export default function DetailPost({
   postId,
   author,
@@ -162,6 +153,16 @@ export default function DetailPost({
   comment,
 }: PropsType): JSX.Element {
   const [sliderCount, setSliderCount] = useState<number>(0);
+  const [commentOpened, setCommentOpened] = useState<boolean>(false);
+
+  const [OpenedComment, setOpenedComment] =
+    useState<Array<{ author: string; content: string }>>(comment);
+
+  useEffect(() => {
+    setOpenedComment((prev) => {
+      return [prev[0], prev[1]];
+    });
+  }, [OpenedComment]);
 
   const handleSliderToLeft = (): void => {
     setSliderCount((prev) => prev - 1);
@@ -169,6 +170,10 @@ export default function DetailPost({
 
   const handleSliderToRight = (): void => {
     setSliderCount((prev) => prev + 1);
+  };
+
+  const handleOpenIt = (): void => {
+    setCommentOpened((prev) => !prev);
   };
 
   return (
@@ -180,29 +185,51 @@ export default function DetailPost({
         <Close />
         <ImgWrapper>
           {imgUrl.map((url, index) => (
-            <ImageBox sliderCount={sliderCount} key={index}>
+            <ImageBox key={index} transformWidth={`${sliderCount * -613}px`}>
               <MyImg src={url} alt={`image${index + 1}`} />
             </ImageBox>
           ))}
         </ImgWrapper>
-        {sliderCount > 0 && (
-          <DetailArrowContainer pos={"left"} onClick={handleSliderToLeft}>
-            <MdKeyboardArrowLeft />
-          </DetailArrowContainer>
-        )}
-        {sliderCount < 4 && (
-          <DetailArrowContainer pos={"right"} onClick={handleSliderToRight}>
-            <MdKeyboardArrowRight />
-          </DetailArrowContainer>
-        )}
         <BelowInner>
+          {sliderCount > 0 && (
+            <DetailArrowContainer pos={"left"} onClick={handleSliderToLeft}>
+              <MdKeyboardArrowLeft />
+            </DetailArrowContainer>
+          )}
+          {sliderCount < 4 && (
+            <DetailArrowContainer pos={"right"} onClick={handleSliderToRight}>
+              <MdKeyboardArrowRight />
+            </DetailArrowContainer>
+          )}
           <MyHiOutlineHeart />
           <LikeNum>{like}</LikeNum>
           <MyComment>댓글</MyComment>
           <CommentNum>{comment.length}</CommentNum>
           <Line />
-          {/* <CommentInput> */}
         </BelowInner>
+        <CommentBox>
+          <DetailCommentInput />
+          {commentOpened
+            ? comment.map((_comment, index) => (
+                <Comment
+                  author={_comment.author}
+                  content={_comment.content}
+                  key={index}
+                />
+              ))
+            : OpenedComment.map((_comment, index) => (
+                <Comment
+                  author={_comment.author}
+                  content={_comment.content}
+                  key={index}
+                />
+              ))}
+          {commentOpened ? (
+            <OpenIt onClick={handleOpenIt}>{". . . 간략히 보기"}</OpenIt>
+          ) : (
+            <OpenIt onClick={handleOpenIt}>{". . . 펼쳐보기"}</OpenIt>
+          )}
+        </CommentBox>
       </Inner>
     </Wrapper>
   );
