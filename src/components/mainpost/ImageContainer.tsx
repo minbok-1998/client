@@ -3,25 +3,16 @@ import styled, { css } from "styled-components";
 
 interface propsType {
   url: string;
-  silderCount: number;
+  sliderCount: number;
 }
 
-const ImageBox = styled.div<{ sliderCount: number }>`
+const ImageBox = styled.div<{ transformWidth: string }>`
   width: 142px;
   height: 134px;
   background-color: #e5e5e5;
   margin: 0 14px 0 0;
   flex-shrink: 0;
-  ${({ sliderCount }) =>
-    sliderCount === 1 &&
-    css`
-      transform: translateX(-156px);
-    `}
-  ${({ sliderCount }) =>
-    sliderCount === 2 &&
-    css`
-      transform: translateX(-312px);
-    `}
+  transform: translateX(${(props) => props.transformWidth});
   transition: 1s;
 `;
 
@@ -33,10 +24,10 @@ const MyImg = styled.img`
 
 export default function ImageContainer({
   url,
-  silderCount,
+  sliderCount,
 }: propsType): JSX.Element {
   return (
-    <ImageBox sliderCount={silderCount}>
+    <ImageBox transformWidth={`${sliderCount * -156}px`}>
       <MyImg src={url} alt={"필요할까?"} />
     </ImageBox>
   );
