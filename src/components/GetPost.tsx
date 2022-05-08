@@ -1,43 +1,37 @@
-// import axios from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import TopPost from "./TopPost";
-import MyPost from "./MyPost";
-import dummy from "../db.json";
+// import MyPost from "./MyPost";
 
-function GetPost() {
-    // const url = "";    
-    
-    interface TopPostInfo {
+export interface TopPostProps {
+    topPost: {
         post_Id: number;
         title: string;
-        content: string;
+        content?: string;
+        like: number;
     }
+}
+
+function GetPost(): JSX.Element {
+    const url = "http://localhost:3001/topPost";    
     
-    const [topPost, setTopPost] = useState<TopPostInfo[]>([]);
+    const [topPost, setTopPost] = useState<TopPostProps['topPost']>({post_Id: 0, title: '', content: '', like: 0});
 
     useEffect(() => {
-        const top = dummy.topPost;
-        setTopPost(top);
+        axios.get(url)
+        .then(function (response) {
+            const dataSet = response.data;
+            setTopPost(dataSet);
+            // setMyPost(dataSet);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }, []);
-
-    // console.log(topPost);
-
-
-    // useEffect(() => {
-    //     axios.get(url)
-    //     .then(function (response) {
-    //         const dataSet = response.data;
-    //         setHotPost(dataSet);
-    //         setMyPost(dataSet);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }, []);
 
     return(
         <>
-            <TopPost topPost={topPost}/>
+            {/* <TopPost { ...topPost }></TopPost> */}
             {/* <MyPost myPost={myPost}/> */}
         </>
     );

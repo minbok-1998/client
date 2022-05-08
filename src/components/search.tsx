@@ -28,7 +28,7 @@ const SearchBar = styled.input`
     }
 `;
 
-function Check(search: string) {
+function Check(search: string):void {
     if (search === null || search === "") {
         alert("검색어를 입력하세요.");
     } else if (search.length < 2) {

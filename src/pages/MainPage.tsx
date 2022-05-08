@@ -4,7 +4,6 @@ import PostWrap from "../components/PostWrap";
 export default function MainPage() {
   return (
     <>
-     <div>MainPage</div>
      <PostWrap/>
     </>
   );
