@@ -3,17 +3,12 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Wrap = styled.div`
-    position: relative;
-    display: flex;
-`;
-
 const Login = styled.div`
-    position: absolute;
     display: flex;
     height: 26px;
     align-items: center;
     right: 52px;
+    align-self: flex-end;
 `
 
 const User = styled.p`
@@ -34,7 +29,7 @@ const Btn = styled.button`
     cursor: pointer;
 `;
 
-function LoginCheck(): JSX.Element {
+function CheckLogin(): JSX.Element {
     const [name, setName] = useState<boolean>(false);
     const [login, setLogin] = useState<boolean>(false);
     
@@ -47,20 +42,18 @@ function LoginCheck(): JSX.Element {
     //         });
     // })
 
-    const checkLogin = ():void => {
+    const check = ():void => {
         setLogin(!login)
         setName(!name)
     }
 
     return(
-        <Wrap>
-            <Login>
-                <User>{name ? '이혜영' : '익명'}님</User>
-                <Btn onClick={checkLogin}>{login ? 'LOGOUT' : 'LOGIN'}</Btn>
-            </Login>
-        </Wrap>
+        <Login>
+            <User>{name ? '이혜영' : '게스트'}님</User>
+            <Btn onClick={check}>{login ? 'LOGOUT' : 'LOGIN'}</Btn>
+        </Login>
 
     );
 }
 
-export default LoginCheck;
+export default CheckLogin;

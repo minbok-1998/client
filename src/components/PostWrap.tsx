@@ -1,28 +1,61 @@
-import LoginCheck from './LoginCheck';
-import Search from './search';
-import TopPost from './TopPost';
-import MyPost from './MyPost';
-import GetPost from './GetPost';
+import Login from './CheckLogin';
+import Search from './PrintSearchBar';
+import TopPost from './PrintTopPost';
+import MyPost from './PrintMyPost';
 import styled from "styled-components";
 
-const Body = styled.div`
-  display: flex;
-  flex-direction: column;
+const Wrap = styled.div`
   font-family: Noto Sans KR;
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   background-color: #EFF4EF;
-  box-sizing: border-box;
+`
+
+const LeftSide = styled.div`
+  width: 128px;
+  height: 100%;
+  background-color: #F8F8F8;
+  box-shadow: 4px 4px 4px 0px #00000040;
 `
 
 const RightSide = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 484px;
+  height: 100%;
   background-color: #F8F8F8;
+  padding: 24px 52px 0 48px;
+  right: 0;
+  box-shadow: -4px 4px 4px 0px #00000040;
 `
 
-function PostWrap() {
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 725px;
+  margin-top: 76px;
+`
+
+function PostWrap():JSX.Element {
   return (
-    <Body>
-      <LoginCheck />
-      <TopPost />
-    </Body>
+    <Wrap>
+      <LeftSide>
+      </LeftSide>
+
+      <RightSide> 
+        <Login />
+        <Flex>
+          <Search />
+          <TopPost />
+          <MyPost />
+        </Flex>
+      </RightSide>
+    </Wrap>
   );
 }
 

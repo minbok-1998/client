@@ -22,9 +22,6 @@ const SearchBar = styled.input`
         font-family: Noto Sans KR;
         font-size: 13px;
         font-weight: 400;
-        line-height: 19px;
-        letter-spacing: 0em;
-        text-align: left;
     }
 `;
 
@@ -38,7 +35,7 @@ function Check(search: string):void {
     }
 }
 
-function Search() {
+function PrintSearchBar() {
     const [search, setSearch] = useState<string>("");
 
     const onChangeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -68,4 +65,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default PrintSearchBar;
