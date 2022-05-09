@@ -1,8 +1,4 @@
-// import { ReactChild, ReactFragment, ReactPortal } from "react";
 import styled from "styled-components";
-// import PostWrap from "./PostWrap";
-// import { TopPostProps } from "./GetPost"
-// import GetPost from "./GetPost";
 
 const Wrap = styled.div``
 
@@ -12,7 +8,6 @@ const Title = styled.h1`
     color: #00964A;
     margin: 0 0 24px 0;
 `
-
 const PostTitles = styled.div`
     display: flex;
     flex-direction: column;

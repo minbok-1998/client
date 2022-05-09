@@ -1,16 +1,22 @@
 import styled from "styled-components";
-import logo from "../img/logo.svg";
-import { ReactComponent as MoveToMain } from '../img/chat.svg';
-import { ReactComponent as MoveToAdd } from '../img/addPost.svg';
-import { ReactComponent as MoveToMajor } from '../img/chemistry.svg';
+import logo from "../../img/logo.svg";
+import { ReactComponent as MoveToMain } from '../../img/chat.svg';
+import { ReactComponent as MoveToAdd } from '../../img/addPost.svg';
+import { ReactComponent as MoveToMajor } from '../../img/chemistry.svg';
 import { Link } from 'react-router-dom';
 
-const Wrap = styled.div`
+const Left = styled.div`
+  position: absolute;
+  width: 8.88888888889%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 304px;
+  padding: 25px 0 64.35185185185vh 0;
+  background-color: #F8F8F8;
+  box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
 `
 
 const Logo = styled.img`
@@ -50,17 +56,17 @@ const StyledMoveToAdd = styled(MoveToAdd)`
   }
 `
 
-function Left():JSX.Element {
+function LeftSide():JSX.Element {
     return (
-        <Wrap>
+        <Left>
         <Link to = "/">
           <Logo src={logo}></Logo>
         </Link>
           <StyledMoveToMain />
           <StyledMoveToAdd />
           <StyledMoveToMajor />
-        </Wrap>
+        </Left>
     )
 }
 
-export default Left;
+export default LeftSide;

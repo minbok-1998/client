@@ -48,12 +48,12 @@ function CheckLogin(): JSX.Element {
         setName(!name)
     }
 
+    // 로그인이 안된 상태일 때 => 로그인 창으로 이동
+    // 로그인 되어있는 상태일 때 => 로그아웃
     return(
         <Login>
             <User>{name ? '이혜영' : '게스트'}님</User>
-            <Link to='/login'>
-            <Btn>{login ? 'LOGOUT' : 'LOGIN'}</Btn>
-            </Link>
+            <Btn onClick={check}>{login ? 'LOGOUT' : 'LOGIN'}</Btn>
         </Login>
 
     );

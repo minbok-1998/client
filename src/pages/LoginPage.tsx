@@ -60,14 +60,14 @@ export default function LoginPage(): JSX.Element {
   // const url = ``;
   const [inputId, SetinputId] = useState<string>("");
   const [inputPw, SetinputPw] = useState<string>("");
-
+  
   const onChangeId = (e:React.ChangeEvent<HTMLInputElement>) => {
     SetinputId(e.target.value);
-}
-
-const onChangePw = (e:React.ChangeEvent<HTMLInputElement>) => {
-  SetinputPw(e.target.value);
-}
+  }
+  
+  const onChangePw = (e:React.ChangeEvent<HTMLInputElement>) => {
+    SetinputPw(e.target.value);
+  }
 
   const onClickLogin = () => {
     console.log('click login')

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import TopPost from "./PrintTopPost";
-// import MyPost from "./MyPost";
+import TopPost from "./mainpage/PrintTopPost";
+// import MyPost from "./mainpage/./PrintMyPost";
 
 // export interface TopPostProps {
 //     topPost: {
@@ -13,7 +13,7 @@ import TopPost from "./PrintTopPost";
 // }
 
 function GetPostData(): JSX.Element {
-    // const url = "http://localhost:3001/topPost";    
+    // const url = "";    
     
     // const [topPost, setTopPost] = useState<TopPostProps['topPost']>({post_Id: 0, title: '', content: '', like: 0});
 

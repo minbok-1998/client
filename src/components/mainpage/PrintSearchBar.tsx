@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import img from "../img/search.svg"
+import img from "../../img/search.svg"
 import { useState } from "react";
 
 const SearchBar = styled.input`
     box-sizing: border-box;
-    width: 384px;
+    width: 100%;
     height: 53px;
     border-radius: 50px;
     box-shadow: 4px 6px 4px 0px #00000040 inset;
@@ -19,7 +19,6 @@ const SearchBar = styled.input`
         outline: none;
     }
     ::placeholder {
-        font-family: Noto Sans KR;
         font-size: 13px;
         font-weight: 400;
     }
