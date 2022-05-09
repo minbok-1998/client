@@ -8,7 +8,7 @@ const Right = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 33.61111111111%;
+    width: 484px;
     height: 100%;
     background-color: #F8F8F8;
     justify-content: space-between;

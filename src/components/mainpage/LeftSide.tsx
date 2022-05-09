@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Left = styled.div`
   position: absolute;
-  width: 8.88888888889%;
+  width: 113px;
   height: 100%;
   display: flex;
   flex-direction: column;

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const SearchBar = styled.input`
     box-sizing: border-box;
-    width: 100%;
+    width: 384px;
     height: 53px;
     border-radius: 50px;
     box-shadow: 4px 6px 4px 0px #00000040 inset;
