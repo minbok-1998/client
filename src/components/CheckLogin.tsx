@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+// import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 const Login = styled.div`
     display: flex;
@@ -50,7 +51,9 @@ function CheckLogin(): JSX.Element {
     return(
         <Login>
             <User>{name ? '이혜영' : '게스트'}님</User>
-            <Btn onClick={check}>{login ? 'LOGOUT' : 'LOGIN'}</Btn>
+            <Link to='/login'>
+            <Btn>{login ? 'LOGOUT' : 'LOGIN'}</Btn>
+            </Link>
         </Login>
 
     );
