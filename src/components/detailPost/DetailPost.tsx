@@ -6,7 +6,7 @@ import {
   Content,
   ArrowContainer,
   PropsType,
-} from "../mainpost/MainPost";
+} from "../mainPost/MainPost";
 import { IoClose } from "react-icons/io5";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { HiOutlineHeart } from "react-icons/hi";

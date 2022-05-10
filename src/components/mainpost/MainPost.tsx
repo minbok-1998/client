@@ -21,7 +21,6 @@ export interface PropsType {
 }
 
 const Wrapper = styled.div`
-  font-family: "Noto Sans KR";
   box-sizing: border-box;
   position: relative;
   width: 600px;
