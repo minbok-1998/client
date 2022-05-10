@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import TopPost from "./mainpage/PrintTopPost";
+import TopPost from "./mainPost/PrintTopPost";
 // import MyPost from "./mainpage/./PrintMyPost";
 
 // export interface TopPostProps {

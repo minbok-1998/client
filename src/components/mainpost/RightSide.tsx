@@ -7,7 +7,7 @@ import MyPost from "./PrintMyPost";
 const Right = styled.div`
     display: flex;
     flex-direction: column;
-    position: absolute;
+    /* position: absolute; */
     width: 484px;
     height: 100%;
     background-color: #F8F8F8;

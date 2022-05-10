@@ -6,7 +6,7 @@ import { ReactComponent as MoveToMajor } from '../../img/chemistry.svg';
 import { Link } from 'react-router-dom';
 
 const Left = styled.div`
-  position: absolute;
+  /* position: absolute; */
   width: 113px;
   height: 100%;
   display: flex;
