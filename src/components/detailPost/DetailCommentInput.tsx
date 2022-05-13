@@ -58,6 +58,7 @@ export default function DetailCommentInput(): JSX.Element {
       alert(comment);
     }
   };
+
   return (
     <>
       <CommentAuthor>{"이혜영"}</CommentAuthor>
