@@ -9,6 +9,7 @@ import { HiOutlineHeart } from "react-icons/hi";
 
 import ImageContainer from "./ImageContainer";
 import CommentInput from "./CommentInput";
+import PostPage from "../../pages/PostPage";
 
 export interface PropsType {
   postId: string;
@@ -20,9 +21,18 @@ export interface PropsType {
   comment: { author: string; content: string }[];
 }
 
+const Wrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`
+
 const Wrapper = styled.div`
   box-sizing: border-box;
-  position: relative;
+  position: absolute;
   width: 600px;
   height: 451px;
   background-color: #f8f8f8;
@@ -165,6 +175,8 @@ export default function MainPost({
   };
 
   return (
+    <Wrap>
+
     <Wrapper>
       <Inner>
         <Title>{title}</Title>
@@ -195,5 +207,6 @@ export default function MainPost({
         <CommentInput />
       </BelowInner>
     </Wrapper>
+    </Wrap>
   );
 }

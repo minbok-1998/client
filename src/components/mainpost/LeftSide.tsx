@@ -62,9 +62,15 @@ function LeftSide():JSX.Element {
         <Link to = "/">
           <Logo src={logo}></Logo>
         </Link>
+        <Link to = "/">
           <StyledMoveToMain />
+        </Link>
+        <Link to = "/post">
           <StyledMoveToAdd />
+        </Link>
+        <Link to = "">
           <StyledMoveToMajor />
+        </Link>
         </Left>
     )
 }

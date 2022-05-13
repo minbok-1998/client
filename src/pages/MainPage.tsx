@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import RightSide from "../components/mainPost/RightSide";
-import LeftSide from "../components/mainPost/LeftSide";
 import useSWR from "swr";
 import { mainPagefetcher } from "../api/mainPageApi";
 import MainPost from "../components/mainPost/MainPost";
@@ -81,7 +79,6 @@ export default function MainPage() {
   }, [isScrollBottom]);
 
   return (
-    <>
       <Main>
         <LeftSide />
         <PostList ref={listRef} onScroll={handleScroll}>
@@ -102,7 +99,6 @@ export default function MainPage() {
         <RightSide />
         {isScrollBottom && <Load>. . . Loading</Load>}
       </Main>
-    </>
   );
 }
 
