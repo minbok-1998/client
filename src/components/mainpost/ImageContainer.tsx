@@ -28,7 +28,7 @@ export default function ImageContainer({
 }: propsType): JSX.Element {
   return (
     <ImageBox transformWidth={`${sliderCount * -156}px`}>
-      <MyImg src={url} alt={"필요할까?"} />
+      <MyImg src={url} alt={"test"} />
     </ImageBox>
   );
 }
