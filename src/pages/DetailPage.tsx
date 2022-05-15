@@ -10,6 +10,8 @@ import { HiOutlineHeart } from "react-icons/hi"; // 빈 하트
 import { HiHeart } from "react-icons/hi"; // 채워진 하트
 import { HiOutlineX } from "react-icons/hi"; // 닫힘 버튼
 
+// 댓글 몇개 보여줄지 정하고 펼쳐보기 기능 추가해야함
+
 const Wrap = styled.div`
     display: flex;
     align-items: center;
@@ -66,11 +68,14 @@ const ImgCont = styled.div`
     height: 362px;
     border-radius: 10px;
     background-color: #E5E5E5;
+    overflow: hidden;
 `
 
+// 두 개 이하일때 크기 변경해야함
 const Img = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 50%;
+    height: 50%;
+    /* object-fit: cover; */ // 비율을 유지할까 말까....
 `
 
 const NumInfo = styled.div`
@@ -108,6 +113,8 @@ const Author = styled(Text)`
 `
 const Comment = styled(Text)``
 
+const Test = styled(Text)``
+
 interface DetailData {
     postId: number;
     title: string;
@@ -129,7 +136,6 @@ function DetailPage() {
     let id = 1;
 
     const [detail, setDetail] = useState<DetailData>();
-    const [img, setImg] = useState<any[]>([]);
     const [comment, setComment] = useState<string[]>();
     const [isLike, setIsLike] = useState(false);
     const [likeNum, setLikeNum] = useState(0);
@@ -180,7 +186,11 @@ function DetailPage() {
                     </TitleWrap>
                     <Content fontSize={'18px'} fontWeight={700} color={'#000'}>{detail && (detail.content)}</Content>
                     <ImgCont>
-                        <Img></Img>
+                        {detail?.imgUrl.map((data) => {
+                            return(
+                                <Img src={data}></Img>
+                            )
+                        })}
                     </ImgCont>
 
                     <NumInfo>
