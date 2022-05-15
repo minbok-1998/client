@@ -25,14 +25,14 @@ function App() {
   return (
     <BrowserRouter>
       <Wrap>
-        <LeftSide />
+        {/* <LeftSide /> */}
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="post" element={<PostPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        <RightSide />
+        {/* <RightSide /> */}
       </Wrap>
     </BrowserRouter>
   );

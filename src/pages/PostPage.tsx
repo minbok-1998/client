@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { HiPhotograph } from "react-icons/hi";
 import { useState } from "react";
 import addImg from '../img/addimg.svg';
+import LeftSide from "../components/mainPost/LeftSide";
+import RightSide from "../components/mainPost/RightSide";
 
 const Wrap = styled.div`
     display: flex;
@@ -139,6 +141,8 @@ function PostPage():JSX.Element {
     }
 
     return(
+        <>
+        <LeftSide />
         <Wrap>
             <Cont>
                 <Title placeholder="제목을 입력하세요"></Title>
@@ -159,6 +163,8 @@ function PostPage():JSX.Element {
                 <PostBtn>완료</PostBtn>
             </Cont>
         </Wrap>
+        <RightSide />
+        </>
     )
 
 }
