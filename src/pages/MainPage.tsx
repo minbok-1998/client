@@ -1,27 +1,19 @@
 import React from "react";
-import styled from "styled-components";
-import RightSide from "../components/mainPost/RightSide";
+import { Link } from 'react-router-dom';
 import LeftSide from "../components/mainPost/LeftSide";
 import Mainpost from "../components/mainPost/MainPost";
+import RightSide from "../components/mainPost/RightSide";
 
-const Main = styled.div`
-  font-family: Noto Sans KR;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
-  background-color: #EFF4EF;
-  box-sizing: border-box;
-`
+// main post 클릭하면 디테일 페이지로 넘어가야하는데 이미지 스크롤이 문제됨
 
 export default function MainPage() {
   return (
-    <Main>
+    <>
       <LeftSide />
-      <Mainpost postId={""} author={""} title={""} content={""} imgUrl={[]} like={0} comment={[]} />
-      <RightSide/>
-    </Main>
+      <Link to={'/detail'}>
+        <Mainpost postId={""} author={""} title={""} content={""} imgUrl={[]} like={0} comment={[]} />
+      </Link>
+      <RightSide />
+    </>
   );
 }
