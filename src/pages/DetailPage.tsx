@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import LeftSide from "../components/mainPost/LeftSide";
 import RightSide from "../components/mainPost/RightSide";
@@ -8,6 +8,7 @@ import DetailCommentInput from "../components/detailPost/DetailCommentInput";
 
 import { HiOutlineHeart } from "react-icons/hi"; // 빈 하트
 import { HiHeart } from "react-icons/hi"; // 채워진 하트
+import { HiOutlineX } from "react-icons/hi"; // 닫힘 버튼
 
 const Wrap = styled.div`
     display: flex;
@@ -31,6 +32,7 @@ const Cont = styled.div`
 `
 
 const TitleWrap = styled.div`
+    position: relative;
     display: flex;
     align-items: baseline;
 `
@@ -44,6 +46,16 @@ const Title = styled(Text)`
     margin-right: 14px;
 `
 const UserName = styled(Text)``
+
+const StyledHiOutlineX = styled(HiOutlineX)`
+    position: absolute;
+    display: flex;
+    align-self: flex-end;
+    font-size: 18px;
+    color: #290606;
+    right: 0;
+`
+
 const Content = styled(Text)`
     width: 80%;
     margin: 41px 0 50px 0;
@@ -121,6 +133,7 @@ function DetailPage() {
     const [comment, setComment] = useState<string[]>();
     const [isLike, setIsLike] = useState(false);
     const [likeNum, setLikeNum] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:3001/posts?postid=${id}`)
@@ -163,6 +176,7 @@ function DetailPage() {
                     <TitleWrap>
                         <Title fontSize={'24px'} fontWeight={700} color={'#00964A'}>{detail && (detail.title)}</Title>
                         <UserName fontSize={'16px'} fontWeight={400} color={'#7E7E7E'}>{detail && (detail.author)}</UserName>
+                        <StyledHiOutlineX onClick={() => navigate(-1)} />
                     </TitleWrap>
                     <Content fontSize={'18px'} fontWeight={700} color={'#000'}>{detail && (detail.content)}</Content>
                     <ImgCont>
