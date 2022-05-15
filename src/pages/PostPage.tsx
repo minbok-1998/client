@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { HiPhotograph } from "react-icons/hi";
 import { useState } from "react";
 import addImg from '../img/addimg.svg';
 import LeftSide from "../components/mainPost/LeftSide";

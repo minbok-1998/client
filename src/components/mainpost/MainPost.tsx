@@ -10,6 +10,7 @@ import { HiOutlineHeart } from "react-icons/hi";
 import ImageContainer from "./ImageContainer";
 import CommentInput from "./CommentInput";
 import PostPage from "../../pages/PostPage";
+import { Link } from 'react-router-dom';
 
 export interface PropsType {
   postId: string;
@@ -169,13 +170,13 @@ export default function MainPost({
     setSliderCount((prev) => prev - 1);
   };
 
+  
   const handleSliderToRight = (): void => {
     setSliderCount((prev) => prev + 1);
   };
 
   return (
     <Wrap>
-
     <Wrapper>
       <Inner>
         <Title>{title}</Title>

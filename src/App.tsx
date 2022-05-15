@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import PostPage from "./pages/PostPage";
 import styled from "styled-components";
+import DetailPage from "./pages/DetailPage";
 
 const Wrap = styled.div`
   font-family: Noto Sans KR;
@@ -25,14 +26,13 @@ function App() {
   return (
     <BrowserRouter>
       <Wrap>
-        {/* <LeftSide /> */}
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="post" element={<PostPage />} />
+            <Route path="detail" element={<DetailPage/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        {/* <RightSide /> */}
       </Wrap>
     </BrowserRouter>
   );
