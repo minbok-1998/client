@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import PostPage from "./pages/PostPage";
 import styled from "styled-components";
 import DetailPage from "./pages/DetailPage";
+import LoginModal from "./components/LoginModal";
 
 const Wrap = styled.div`
   font-family: Noto Sans KR;
@@ -34,6 +35,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
       </Wrap>
+          {/* <LoginModal></LoginModal> */}
     </BrowserRouter>
   );
 }

@@ -56,6 +56,7 @@ const StyledHiOutlineX = styled(HiOutlineX)`
     font-size: 18px;
     color: #290606;
     right: 0;
+    overflow: hidden;
 `
 
 const Content = styled(Text)`
