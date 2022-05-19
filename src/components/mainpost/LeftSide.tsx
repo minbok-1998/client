@@ -59,18 +59,18 @@ const StyledMoveToAdd = styled(MoveToAdd)`
 function LeftSide():JSX.Element {
     return (
         <Left>
-        <Link to = "/">
-          <Logo src={logo}></Logo>
-        </Link>
-        <Link to = "/">
-          <StyledMoveToMain />
-        </Link>
-        <Link to = "/post">
-          <StyledMoveToAdd />
-        </Link>
-        <Link to = "">
-          <StyledMoveToMajor />
-        </Link>
+          <Link to = "/">
+            <Logo src={logo}></Logo>
+          </Link>
+          <Link to = "/">
+            <StyledMoveToMain />
+          </Link>
+          <Link to = "/post">
+            <StyledMoveToAdd />
+          </Link>
+          <Link to = "#">
+            <StyledMoveToMajor />
+          </Link>
         </Left>
     )
 }

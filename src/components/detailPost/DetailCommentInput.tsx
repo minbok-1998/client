@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const Wrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 27px 0;
+`
+
 const CommentAuthor = styled.span`
   font-size: 18px;
   font-weight: 700;
-  margin-right: 30px;
 `;
 
 const MyInput = styled.input`
@@ -18,6 +25,7 @@ const MyInput = styled.input`
   border: 1px solid #7e7e7e;
   text-indent: 18px;
   font-size: 14px;
+  box-sizing: border-box;
 `;
 
 const SubmitBtn = styled.button`
@@ -29,6 +37,7 @@ const SubmitBtn = styled.button`
   font-size: 13px;
   border-radius: 4px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
   cursor: pointer;
 `;
 
@@ -58,9 +67,8 @@ export default function DetailCommentInput(): JSX.Element {
       alert(comment);
     }
   };
-
   return (
-    <>
+    <Wrap>
       <CommentAuthor>{"이혜영"}</CommentAuthor>
       <MyInput
         type="text"
@@ -71,6 +79,6 @@ export default function DetailCommentInput(): JSX.Element {
         onKeyDown={handleKeyDown}
       />
       <SubmitBtn onClick={handleClick}>등록</SubmitBtn>
-    </>
+    </Wrap>
   );
 }
