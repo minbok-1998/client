@@ -79,26 +79,24 @@ export default function MainPage() {
   }, [isScrollBottom]);
 
   return (
-      <Main>
-        <LeftSide />
-        <PostList ref={listRef} onScroll={handleScroll}>
-          {data &&
-            data.map((_data: PropsType) => (
-              <MainPost
-                postId={_data.postId}
-                author={_data.author}
-                title={_data.title}
-                content={_data.content}
-                imgUrl={_data.imgUrl}
-                like={_data.like}
-                comment={_data.comment}
-                key={_data.postId}
-              />
-            ))}
-        </PostList>
-        <RightSide />
-        {isScrollBottom && <Load>. . . Loading</Load>}
-      </Main>
+    <Main>
+      <PostList ref={listRef} onScroll={handleScroll}>
+        {data &&
+          data.map((_data: PropsType) => (
+            <MainPost
+              postId={_data.postId}
+              author={_data.author}
+              title={_data.title}
+              content={_data.content}
+              imgUrl={_data.imgUrl}
+              like={_data.like}
+              comment={_data.comment}
+              key={_data.postId}
+            />
+          ))}
+      </PostList>
+      {isScrollBottom && <Load>. . . Loading</Load>}
+    </Main>
   );
 }
 
