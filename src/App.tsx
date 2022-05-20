@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import LeftSide from "./components/mainPost/LeftSide";
+import LeftSide from "./components/left/LeftSide";
 import RightSide from "./components/mainPost/RightSide";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
@@ -17,21 +17,21 @@ const Wrap = styled.div`
   justify-content: space-between;
   width: 100vw;
   height: 100vh;
-  background-color: #EFF4EF;
+  background-color: #eff4ef;
   box-sizing: border-box;
-`
+`;
 
 function App() {
   return (
     <BrowserRouter>
       <Wrap>
         <LeftSide />
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="post" element={<PostPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="post" element={<PostPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
         <RightSide />
       </Wrap>
     </BrowserRouter>
