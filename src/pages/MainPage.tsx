@@ -5,19 +5,10 @@ import { mainPagefetcher } from "../api/mainPageApi";
 import MainPost from "../components/mainPost/MainPost";
 import { PropsType } from "../components/mainPost/MainPost";
 import { throttle } from "throttle-debounce";
-
-const Main = styled.div`
-  font-family: Noto Sans KR;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
-  background-color: #eff4ef;
-  box-sizing: border-box;
-`;
+import DetailPost from "../components/detailPost/DetailPost";
 
 const PostList = styled.div`
+  height: 100vh;
   max-height: 100vh;
   overflow: scroll;
   left: 113px;
@@ -79,7 +70,7 @@ export default function MainPage() {
   }, [isScrollBottom]);
 
   return (
-    <Main>
+    <>
       <PostList ref={listRef} onScroll={handleScroll}>
         {data &&
           data.map((_data: PropsType) => (
@@ -96,7 +87,7 @@ export default function MainPage() {
           ))}
       </PostList>
       {isScrollBottom && <Load>. . . Loading</Load>}
-    </Main>
+    </>
   );
 }
 
