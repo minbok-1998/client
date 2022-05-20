@@ -1,12 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import useSWR from "swr";
 import { mainPagefetcher } from "../api/mainPageApi";
 import MainPost from "../components/mainPost/MainPost";
-import { PropsType } from "../components/mainPost/MainPost";
+import { PostType } from "../type/dataType";
 import { throttle } from "throttle-debounce";
-import DetailPost from "../components/detailPost/DetailPost";
-
+import { useRecoilState } from "recoil";
+import { scrolledState } from "../recoil/store";
 const PostList = styled.div`
   height: 100vh;
   max-height: 100vh;
@@ -36,10 +35,11 @@ const Load = styled.div`
 `;
 
 export default function MainPage() {
+  const [srolled, setScrolled] = useRecoilState<number>(scrolledState);
   const listRef = useRef<HTMLDivElement>(null);
   const [isScrollBottom, setIsScrollBottom] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
-  const [data, setData] = useState<PropsType[] | null>(null);
+  const [data, setData] = useState<PostType[] | null>(null);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -58,6 +58,7 @@ export default function MainPage() {
   const handleScroll = throttle(1000, () => {
     if (listRef.current) {
       const { scrollHeight, offsetHeight, scrollTop } = listRef.current;
+      setScrolled(scrollTop);
       const offset = 50;
       setIsScrollBottom(scrollHeight - offsetHeight - scrollTop < offset);
     }
@@ -69,11 +70,23 @@ export default function MainPage() {
     }
   }, [isScrollBottom]);
 
+  useEffect(() => {
+    const scrolledHeight = sessionStorage.getItem("scrolledHeight");
+    // 순차적 실행의 문제를 해결하지 못해서 부득히 하게 setTimeout 사용 , 추후 수정
+    setTimeout(() => {
+      //@ts-ignore
+      listRef.current.scrollTo(
+        0,
+        scrolledHeight ? parseInt(scrolledHeight) : 0
+      );
+    }, 1000);
+  }, []);
+
   return (
     <>
       <PostList ref={listRef} onScroll={handleScroll}>
         {data &&
-          data.map((_data: PropsType) => (
+          data.map((_data: PostType) => (
             <MainPost
               postId={_data.postId}
               author={_data.author}

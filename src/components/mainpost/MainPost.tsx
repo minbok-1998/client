@@ -10,17 +10,10 @@ import { HiOutlineHeart } from "react-icons/hi";
 import ImageContainer from "./ImageContainer";
 import CommentInput from "./CommentInput";
 import PostPage from "../../pages/PostPage";
-
-export interface PropsType {
-  postId: string;
-  author: string;
-  title: string;
-  content: string;
-  imgUrl: string[];
-  like: number;
-  comment: { author: string; content: string }[];
-}
-
+import { useNavigate } from "react-router-dom";
+import { PostType } from "../../type/dataType";
+import { useRecoilState } from "recoil";
+import { scrolledState } from "../../recoil/store";
 const Wrap = styled.div`
   position: relative;
   display: flex;
@@ -57,6 +50,7 @@ export const Title = styled.h1`
   width: 300px;
   height: 26px;
   margin: 0 auto;
+  cursor: pointer;
 `;
 
 export const Author = styled.p`
@@ -162,9 +156,10 @@ export default function MainPost({
   imgUrl,
   like,
   comment,
-}: PropsType): JSX.Element {
+}: PostType): JSX.Element {
+  const [srolled, setScrolled] = useRecoilState<number>(scrolledState);
   const [sliderCount, setSliderCount] = useState<number>(0);
-
+  const navigate = useNavigate();
   const handleSliderToLeft = (): void => {
     setSliderCount((prev) => prev - 1);
   };
@@ -172,12 +167,16 @@ export default function MainPost({
   const handleSliderToRight = (): void => {
     setSliderCount((prev) => prev + 1);
   };
+  const SwitchDetail = (): void => {
+    navigate(`./detailPost/${postId}`);
+    sessionStorage.setItem("scrolledHeight", `${srolled}`);
+  };
 
   return (
     <Wrap>
       <Wrapper>
         <Inner>
-          <Title>{title}</Title>
+          <Title onClick={SwitchDetail}>{title}</Title>
           <Author>{author}</Author>
           <Content>{content}</Content>
           <SlideWrapper>
