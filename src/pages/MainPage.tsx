@@ -6,6 +6,7 @@ import { PostType } from "../type/dataType";
 import { throttle } from "throttle-debounce";
 import { useRecoilState } from "recoil";
 import { scrolledState } from "../recoil/store";
+
 const PostList = styled.div`
   height: 100vh;
   max-height: 100vh;

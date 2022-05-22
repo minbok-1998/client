@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import addImg from '../img/addimg.svg';
-import LeftSide from "../components/mainPost/LeftSide";
-import RightSide from "../components/mainPost/RightSide";
 
 const Wrap = styled.div`
   display: flex;
@@ -123,18 +121,22 @@ function PostPage(): JSX.Element {
       const imgUrl = URL.createObjectURL(file[i]);
       setImg((prev) => [...prev, imgUrl]);
     }
+  };
 
-    // 이미지 최대 개수 4개로 제한
+  // 미리보기 이미지 클릭시 삭제
+  const onRemove = (event: any) => {
+    setImg(img.filter((img) => img !== event.target.currentSrc));
+  };
+
+  // 이미지 최대 개수 4개로 제한
+  useEffect(() => {
     if (img.length > 4) {
       alert("이미지는 최대 4개까지 첨부 가능합니다.");
       setImg([]);
     }
-  };
+  })
 
-  // 문제있음: 한꺼번에 다 사라짐
-  const onRemove = (event: any) => {
-    setImg(img.filter((img) => img !== event.target.currentSrc));
-  };
+  // console.log(img.length)
   
   return (
     <Wrap>
