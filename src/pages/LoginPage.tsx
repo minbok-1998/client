@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "../img/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useRecoilState } from "recoil";
+import { userName } from "../recoil/store";
 
 const Wrap = styled.div`
   display: flex;
@@ -57,6 +60,8 @@ const LoginBtn = styled.button`
 `;
 
 export default function LoginPage(): JSX.Element {
+  const navigate = useNavigate();
+  const [username, setUserName] = useRecoilState<string>(userName);
   // const url = ``;
   const [inputId, SetinputId] = useState<string>("");
   const [inputPw, SetinputPw] = useState<string>("");
@@ -71,18 +76,20 @@ export default function LoginPage(): JSX.Element {
 
   const onClickLogin = () => {
     console.log("click login");
+    axios
+      .post("http://localhost:5000/login", {
+        userId: inputId,
+        password: inputPw,
+      })
+      .then((res) => {
+        if (res.statusText === "OK") {
+          setUserName(res.data.data);
+          sessionStorage.setItem("isLoggedIn", "true");
+          sessionStorage.setItem("username", `${username}`);
+        }
+      });
+    navigate("/");
   };
-
-  // useEffect(() => {
-  //   axios({
-  //     method: 'post',
-  //     url: '',
-  //     data: {
-  //         "username": String,
-  //         "password": String,
-  //     }
-  //   });
-  // }, [])
 
   return (
     <Wrap>
@@ -95,6 +102,7 @@ export default function LoginPage(): JSX.Element {
         placeholder="아이디를 입력하세요"
       ></CheckId>
       <CheckPw
+        type="password"
         value={inputPw}
         onChange={onChangePw}
         placeholder="비밀번호를 입력하세요"
