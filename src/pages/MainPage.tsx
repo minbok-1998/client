@@ -41,8 +41,6 @@ export default function MainPage() {
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<PostType[] | null>(null);
 
-  const [loading, setLoading] = useState<boolean>(false);
-
   useEffect(() => {
     if (data === null) {
       mainPagefetcher(page)
@@ -79,7 +77,7 @@ export default function MainPage() {
         0,
         scrolledHeight ? parseInt(scrolledHeight) : 0
       );
-    }, 1000);
+    }, 100);
   }, []);
 
   return (
