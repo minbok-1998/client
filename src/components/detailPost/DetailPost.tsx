@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Title, Author, Content, ArrowContainer } from "../mainPost/MainPost";
+import { Title, Author, Content, ArrowContainer } from "../mainpost/MainPost";
 import { IoClose } from "react-icons/io5";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { HiOutlineHeart } from "react-icons/hi";
@@ -8,6 +8,7 @@ import DetailCommentInput from "./DetailCommentInput";
 import Comment from "./Comment";
 import { PostType } from "../../type/dataType";
 import { useNavigate } from "react-router-dom";
+
 const Wrapper = styled.div`
   box-sizing: border-box;
   width: 711px;

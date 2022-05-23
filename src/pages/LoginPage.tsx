@@ -4,10 +4,10 @@ import styled from "styled-components";
 import logo from "../img/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useRecoilState } from "recoil";
+import { constSelector, useRecoilState } from "recoil";
 import { userName } from "../recoil/store";
 
-const Wrap = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,54 +62,69 @@ const LoginBtn = styled.button`
 `;
 
 export default function LoginPage(): JSX.Element {
+  const [userId, setUserId] = useState('');
+  const [userPwd, setUserPwd] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess] = useState(false);
+
   const navigate = useNavigate();
-  const [username, setUserName] = useRecoilState<string>(userName);
-  // const url = ``;
-  const [inputId, SetinputId] = useState<string>("");
-  const [inputPw, SetinputPw] = useState<string>("");
 
-  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    SetinputId(e.target.value);
-  };
+  const onLogin = () => {
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/login',
+      data: {
+        userId: userId,
+        password: userPwd,
+      }
+    })
+    .then(res => {
+      sessionStorage.setItem('id', res.data.data);
+      setSuccess(true);
+    })
+    .catch(err => {
+      if(!err?.response) {
+        setErrMsg('서버가 응답하지 않습니다.')
+      } else if (err.response?.status === 400) {
+          setErrMsg('이 필드는 blank일 수 없습니다.');
+          console.log(errMsg)
+      } else if (err.response?.status === 401) {
+          setErrMsg('로그인 정보가 없습니다.')
+      } else {
+          setErrMsg('로그인에 실패하였습니다.')
+      }
+    });
+  }
 
-  const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    SetinputPw(e.target.value);
-  };
-
-  const onClickLogin = () => {
-    console.log("click login");
-    axios
-      .post("http://localhost:5000/login", {
-        userId: inputId,
-        password: inputPw,
-      })
-      .then((res) => {
-        if (res.statusText === "OK") {
-          setUserName(res.data.data);
-          sessionStorage.setItem("isLoggedIn", "true");
-          sessionStorage.setItem("username", `${username}`);
-        }
-      });
-    navigate("/");
-  };
+  // 로그인 버튼 클릭 또는 엔터 입력시 로그인 정보 제출
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    onLogin();
+  }
 
   return (
-    <Wrap>
-      <Link to="/">
-        <Logo src={logo}></Logo>
-      </Link>
-      <CheckId
-        value={inputId}
-        onChange={onChangeId}
-        placeholder="아이디를 입력하세요"
-      ></CheckId>
-      <CheckPw
-        type="password"
-        value={inputPw}
-        onChange={onChangePw}
-        placeholder="비밀번호를 입력하세요"
-      ></CheckPw>
-      <LoginBtn onClick={onClickLogin}>LOGIN</LoginBtn>
-    </Wrap>
+    <>
+    {success ? (
+      navigate('/')
+    ) : (
+      <Form onSubmit={handleSubmit}>
+        <Link to="/">
+          <Logo src={logo}></Logo>
+        </Link>
+        <CheckId
+          type='text'
+          placeholder="아이디를 입력하세요"
+          required
+          onChange={(e) => {setUserId(e.target.value);}}
+        />
+        <CheckPw
+          type="password"
+          placeholder="비밀번호를 입력하세요"
+          onChange={(e) => {setUserPwd(e.target.value);}}
+        />
+        <LoginBtn type="submit">LOGIN</LoginBtn>
+    </Form>
+    )}
+    </>
   );
 }

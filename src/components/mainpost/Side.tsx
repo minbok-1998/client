@@ -5,7 +5,6 @@ import { ReactComponent as MoveToAdd } from '../../img/addPost.svg';
 import { ReactComponent as MoveToMajor } from '../../img/chemistry.svg';
 import { Link } from 'react-router-dom';
 import { Outlet } from "react-router-dom";
-
 import SearchBar from "../right/PrintSearchBar";
 import CheckLogin from "../right/CheckLogin";
 import TopPost from "../right/PrintTopPost";
