@@ -1,10 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-// import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userName } from "../../recoil/store";
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 const Login = styled.div`
   display: flex;
@@ -33,35 +29,36 @@ const Btn = styled.button`
 `;
 
 function CheckLogin(): JSX.Element {
-  const navigate = useNavigate();
-  const [username, setUsername] = useRecoilState<string>(userName);
-  const [name, setName] = useState<boolean>(false);
-  const [login, setLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const userName = sessionStorage.getItem('id');
 
-  // useEffect(() => {
-  //     axios({
-  //         method:'get',
-  //         url:'http://bit.ly/2mTM3nY',
-  //       })
-  //         .then(function (response) {
-  //         });
-  // })
-
-  const check = (): void => {
-    if (username === "게스트") {
-      navigate("/login");
+  useEffect(() => {
+    if(userName === null) {
+      setIsLogin(false)
     } else {
-      setUsername("게스트");
-      sessionStorage.setItem("isLoggedIn", "false");
+      setIsLogin(true)
     }
-  };
+  },[])
 
-  // 로그인이 안된 상태일 때 => 로그인 창으로 이동
-  // 로그인 되어있는 상태일 때 => 로그아웃
+  // 로그아웃 구현하기
+  const logout = () => {
+    window.confirm('로그아웃 하시겠습니까?')
+    sessionStorage.clear();
+    setIsLogin(false);
+  }
+  
   return (
     <Login>
-      <User>{username} 님</User>
-      <Btn onClick={check}>{username === "게스트" ? "LOGIN" : "LOGOUT"}</Btn>
+      <User>{isLogin? userName : '게스트'} 님</User>
+      {isLogin ? (
+        <Link to='/'>
+          <Btn onClick={logout}>LOGOUT</Btn>
+        </Link>
+      ) : (
+        <Link to='/login'>
+          <Btn>LOGIN</Btn>
+        </Link>
+      )}
     </Login>
   );
 }

@@ -1,11 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { mainPagefetcher } from "../api/mainPageApi";
-import MainPost from "../components/mainPost/MainPost";
+import MainPost from "../components/mainpost/MainPost";
 import { PostType } from "../type/dataType";
 import { throttle } from "throttle-debounce";
 import { useRecoilState } from "recoil";
 import { scrolledState } from "../recoil/store";
+
 const PostList = styled.div`
   height: 100vh;
   max-height: 100vh;
