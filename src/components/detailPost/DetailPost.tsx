@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  Title,
-  Author,
-  Content,
-  ArrowContainer,
-  PropsType,
-} from "../mainPost/MainPost";
+import { Title, Author, Content, ArrowContainer } from "../mainpost/MainPost";
 import { IoClose } from "react-icons/io5";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { HiOutlineHeart } from "react-icons/hi";
 import DetailCommentInput from "./DetailCommentInput";
 import Comment from "./Comment";
+import { PostType } from "../../type/dataType";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -151,7 +147,8 @@ export default function DetailPost({
   imgUrl,
   like,
   comment,
-}: PropsType): JSX.Element {
+}: PostType): JSX.Element {
+  const navigate = useNavigate();
   const [sliderCount, setSliderCount] = useState<number>(0);
   const [commentOpened, setCommentOpened] = useState<boolean>(false);
 
@@ -176,13 +173,17 @@ export default function DetailPost({
     setCommentOpened((prev) => !prev);
   };
 
+  const handleClose = (): void => {
+    navigate(-1);
+  };
+
   return (
     <Wrapper>
       <Inner>
         <DetailTItle>{title}</DetailTItle>
         <DetailAuthor>{author}</DetailAuthor>
         <DetailContent>{content}</DetailContent>
-        <Close />
+        <Close onClick={handleClose} />
         <ImgWrapper>
           {imgUrl.map((url, index) => (
             <ImageBox key={index} transformWidth={`${sliderCount * -613}px`}>

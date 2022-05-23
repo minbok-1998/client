@@ -10,17 +10,10 @@ import { HiOutlineHeart } from "react-icons/hi";
 import ImageContainer from "./ImageContainer";
 import CommentInput from "./CommentInput";
 import PostPage from "../../pages/PostPage";
-import { Link } from 'react-router-dom';
-
-export interface PropsType {
-  postId: string;
-  author: string;
-  title: string;
-  content: string;
-  imgUrl: string[];
-  like: number;
-  comment: { author: string; content: string }[];
-}
+import { useNavigate } from "react-router-dom";
+import { PostType } from "../../type/dataType";
+import { useRecoilState } from "recoil";
+import { scrolledState } from "../../recoil/store";
 
 const Wrap = styled.div`
   position: relative;
@@ -28,8 +21,8 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-`
+  height: 50%;
+`;
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -58,6 +51,7 @@ export const Title = styled.h1`
   width: 300px;
   height: 26px;
   margin: 0 auto;
+  cursor: pointer;
 `;
 
 export const Author = styled.p`
@@ -163,9 +157,10 @@ export default function MainPost({
   imgUrl,
   like,
   comment,
-}: PropsType): JSX.Element {
+}: PostType): JSX.Element {
+  const [srolled, setScrolled] = useRecoilState<number>(scrolledState);
   const [sliderCount, setSliderCount] = useState<number>(0);
-
+  const navigate = useNavigate();
   const handleSliderToLeft = (): void => {
     setSliderCount((prev) => prev - 1);
   };
@@ -174,39 +169,43 @@ export default function MainPost({
   const handleSliderToRight = (): void => {
     setSliderCount((prev) => prev + 1);
   };
+  const SwitchDetail = (): void => {
+    navigate(`./detailPost/${postId}`);
+    sessionStorage.setItem("scrolledHeight", `${srolled}`);
+  };
 
   return (
     <Wrap>
-    <Wrapper>
-      <Inner>
-        <Title>{title}</Title>
-        <Author>{author}</Author>
-        <Content>{content}</Content>
-        <SlideWrapper>
-          {imgUrl.map((url, index) => (
-            <ImageContainer url={url} key={index} sliderCount={sliderCount} />
-          ))}
-        </SlideWrapper>
-        {sliderCount > 0 && (
-          <ArrowContainer pos={"left"} onClick={handleSliderToLeft}>
-            <MdKeyboardArrowLeft />
-          </ArrowContainer>
-        )}
-        {sliderCount < 2 && (
-          <ArrowContainer pos={"right"} onClick={handleSliderToRight}>
-            <MdKeyboardArrowRight />
-          </ArrowContainer>
-        )}
-      </Inner>
-      <BelowInner>
-        <MyHiOutlineHeart />
-        <LikeNum>{like}</LikeNum>
-        <MyMdComment />
-        <CommentNum>{comment.length}</CommentNum>
-        <Line />
-        <CommentInput />
-      </BelowInner>
-    </Wrapper>
+      <Wrapper>
+        <Inner>
+          <Title onClick={SwitchDetail}>{title}</Title>
+          <Author>{author}</Author>
+          <Content>{content}</Content>
+          <SlideWrapper>
+            {imgUrl.map((url, index) => (
+              <ImageContainer url={url} key={index} sliderCount={sliderCount} />
+            ))}
+          </SlideWrapper>
+          {sliderCount > 0 && (
+            <ArrowContainer pos={"left"} onClick={handleSliderToLeft}>
+              <MdKeyboardArrowLeft />
+            </ArrowContainer>
+          )}
+          {sliderCount < 2 && (
+            <ArrowContainer pos={"right"} onClick={handleSliderToRight}>
+              <MdKeyboardArrowRight />
+            </ArrowContainer>
+          )}
+        </Inner>
+        <BelowInner>
+          <MyHiOutlineHeart />
+          <LikeNum>{like}</LikeNum>
+          <MyMdComment />
+          <CommentNum>{comment.length}</CommentNum>
+          <Line />
+          <CommentInput />
+        </BelowInner>
+      </Wrapper>
     </Wrap>
   );
 }
