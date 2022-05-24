@@ -2,13 +2,15 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
+    position: absolute;
     display: flex;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-color:#00000073;
     font-family: Noto sans KR;
     align-items: center;
     justify-content: center;
+    z-index: 999;
 `
 
 const Cont = styled.div`
@@ -41,25 +43,23 @@ const OK = styled.button`
 `
 
 function LoginModal():JSX.Element {
-    // const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    // const ModalOpen = () => {
-    //     if(isOpen == false) {
-    //         setIsOpen(true)
-    //     } else {
-    //         setIsOpen(false)
-    //     }
-    // }
+    const ModalOpen = () => {
+        if(isOpen == false) {
+            setIsOpen(true)
+        } else {
+            setIsOpen(false)
+        }
+    }
 
     return(
-        // {isOpen ? () : (
             <Wrap>
                 <Cont>
                     <Alert>로그인이 필요한 서비스 입니다.</Alert>
                     <OK>확인</OK>
                 </Cont>
             </Wrap>
-        // )}
     )
 }
 

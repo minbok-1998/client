@@ -11,9 +11,10 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 842px;
   height: 100%;
   background-color: #00000073;
+  margin: 0 0 0 113px;
 `;
 
 const PostBox = styled.div`

@@ -10,16 +10,16 @@ import { PostType } from "../../type/dataType";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
+  position: relative;
   box-sizing: border-box;
   width: 711px;
   height: auto;
   background-color: #f8f8f8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  margin: 20px auto;
+  margin: 103px 0 0 0;
   padding-top: 50px;
   padding-bottom: 20px;
-  //border: 2px solid yellow;
 `;
 
 const Inner = styled.div`

@@ -26,7 +26,7 @@ function App() {
     <BrowserRouter>
       <Wrap>
         <Routes>
-          <Route  path="/" element={<Side />}>
+          <Route element={<Side />}>
             <Route path="/" element={<MainPage />} />
             <Route path="post" element={<PostPage />} />
             <Route path="detailPost/:postId" element={<DetailPage />} />

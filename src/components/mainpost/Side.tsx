@@ -9,9 +9,10 @@ import SearchBar from "../right/PrintSearchBar";
 import CheckLogin from "../right/CheckLogin";
 import TopPost from "../right/PrintTopPost";
 import MyPost from "../right/PrintMyPost";
+import { useState } from "react";
 
 const Left = styled.div`
-  /* position: absolute; */
+  position: absolute;
   width: 113px;
   height: 100%;
   display: flex;
@@ -62,6 +63,7 @@ const StyledMoveToAdd = styled(MoveToAdd)`
 `
 
 const Right = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   /* position: absolute; */
@@ -76,6 +78,13 @@ const Right = styled.div`
 `;
 
 function LeftSide():JSX.Element {
+  const [isLogin, setIsLogin] = useState(false);
+  const id = sessionStorage.getItem('id');
+
+  const havetoLogin = () => {
+    
+  }
+
     return (
       <>
         <Left>
@@ -86,7 +95,7 @@ function LeftSide():JSX.Element {
             <StyledMoveToMain />
           </Link>
           <Link to = "/post">
-            <StyledMoveToAdd />
+            <StyledMoveToAdd onClick={havetoLogin}/>
           </Link>
           <Link to = "#">
             <StyledMoveToMajor />

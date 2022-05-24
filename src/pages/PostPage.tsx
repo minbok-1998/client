@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import addImg from '../img/addimg.svg';
 
 const Wrap = styled.div`
+  position: absolute;
   display: flex;
-  width: 100%;
+  width: calc(100% - 113px - 484px);
   height: 100%;
   background: #00000073;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  margin: 0 0 0 113px;
 `;
 
 const Cont = styled.div`
