@@ -1,28 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ImPlay3 } from "react-icons/im";
+// import { ImPlay3 } from "react-icons/im";
 // import axios from "axios";
 
 const MyInput = styled.input`
-  box-sizing: border-box;
-  width: 488px;
-  height: 33px;
-  border-radius: 50px;
+  width: 100%;
+  height: 41px;
+  border-radius: 10px;
   box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25),
     inset 0px 1px 4px rgba(0, 0, 0, 0.25);
-  position: absolute;
-  top: 36px;
-  margin: 0;
-  border: 1px solid #7e7e7e;
   text-indent: 18px;
-`;
-
-const MyImPlay3 = styled(ImPlay3)`
-  font-size: 24px;
-  position: absolute;
-  right: 15px;
-  top: 41px;
-  cursor: pointer;
+  border: none;
+  background-color: #fff;
+  margin: 20px 0 0 0;
 `;
 
 export default function CommentInput(): JSX.Element {
@@ -62,7 +52,6 @@ export default function CommentInput(): JSX.Element {
         maxLength={30}
         onKeyDown={handleKeyDown}
       />
-      <MyImPlay3 onClick={handleClick} />
     </>
   );
 }

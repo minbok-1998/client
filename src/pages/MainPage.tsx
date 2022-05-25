@@ -6,18 +6,23 @@ import { PostType } from "../type/dataType";
 import { throttle } from "throttle-debounce";
 import { useRecoilState } from "recoil";
 import { scrolledState } from "../recoil/store";
+import Posting from "../components/mainpost/Posting";
+import PrintTopPost from "../components/right/PrintTopPost"
+
+const Cont = styled.div`
+    position: relative;
+    width: 62.5%;
+    height: 100%;
+    background-color: pink;
+    margin: 0 auto;
+`
+
+// Left Side
+const IDK = styled.div``
 
 const PostList = styled.div`
   height: 100vh;
-  max-height: 100vh;
   overflow: scroll;
-  left: 113px;
-  position: absolute;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  width: calc(100% - 113px - 484px);
-  flex-wrap: wrap;
 `;
 
 const Load = styled.div`
@@ -34,6 +39,35 @@ const Load = styled.div`
   margin: auto;
   line-height: 100px;
 `;
+
+// Right Side
+
+const RightSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 23%;
+  height: auto;
+  top: 0;
+  right: 0;
+  margin: 0 20px 0 20px;
+`
+
+const Undefined = styled.div`
+  width: 100%;
+  height: 410px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 0 0 20px 0;
+`
+
+const TopPost = styled.div`
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+`
 
 export default function MainPage() {
   const [srolled, setScrolled] = useRecoilState<number>(scrolledState);
@@ -82,7 +116,12 @@ export default function MainPage() {
   }, []);
 
   return (
-    <>
+    <Cont>
+    {/* Left Side - 아직 결정 안함, intro member,  */}
+    <IDK></IDK>
+    {/* center - Posting */}
+    <Posting />
+    {/* center - Posts */}
       <PostList ref={listRef} onScroll={handleScroll}>
         {data &&
           data.map((_data: PostType) => (
@@ -99,7 +138,15 @@ export default function MainPage() {
           ))}
       </PostList>
       {isScrollBottom && <Load>. . . Loading</Load>}
-    </>
+
+      {/* Right Side - 아직 결정 안됨, TopPost */}
+      <RightSide>
+        <Undefined />
+        <TopPost>
+          <PrintTopPost />
+        </TopPost>
+      </RightSide>
+    </Cont>
   );
 }
 

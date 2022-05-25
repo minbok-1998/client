@@ -9,102 +9,91 @@ import { HiOutlineHeart } from "react-icons/hi";
 
 import ImageContainer from "./ImageContainer";
 import CommentInput from "./CommentInput";
-import PostPage from "../../pages/PostPage";
 import { useNavigate } from "react-router-dom";
 import { PostType } from "../../type/dataType";
 import { useRecoilState } from "recoil";
 import { scrolledState } from "../../recoil/store";
 
-const Wrap = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 50%;
-`;
-
 const Wrapper = styled.div`
-  box-sizing: border-box;
-  position: absolute;
-  width: 600px;
-  height: 451px;
-  background-color: #f8f8f8;
+  width: 48%;
+  height: auto;
+  background-color: #fff;
   border-radius: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding-top: 77px;
+  padding: 20px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 `;
 
 const Inner = styled.div`
   position: relative;
-  width: 455px;
-  margin: 0 auto;
 `;
 
+const TitleandUser = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 0 20px 0;
+`
+
+const UserImg =  styled.img`
+  width: 2.125rem;
+  height: 2.125rem;;
+  background-color: #b4b4b4;
+  border-radius: 50%;
+  margin: 0 20px 0 0;
+`
+
 export const Title = styled.h1`
-  display: inline-block;
-  box-sizing: border-box;
   color: #00964a;
   font-weight: 700;
-  line-height: 26px;
   font-size: 18px;
-  width: 300px;
-  height: 26px;
-  margin: 0 auto;
+  margin: 0 20px 0 0;
   cursor: pointer;
 `;
 
 export const Author = styled.p`
-  position: absolute;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 40px;
-  height: 17px;
   color: #7e7e7e;
   font-size: 12px;
-  line-height: 17.38px;
-  top: 8px;
-  right: 0;
-  margin: 0 auto;
 `;
 
 export const Content = styled.p`
   box-sizing: border-box;
   font-weight: 400;
-  line-height: 18.82px;
-  width: 455px;
-  height: 76px;
-  margin-top: 7px;
+  width: 100%;
+  height: auto;
+  margin: 0 0 40px 0;
 `;
 
 const SlideWrapper = styled.div`
   display: flex;
-  width: 455px;
+  width: 100%;
   height: auto;
   overflow: hidden;
+  margin: 0 0 20px 0;
 `;
 
 export const ArrowContainer = styled.div<{ pos: "left" | "right" }>`
   display: flex;
+  position: absolute;
   justify-content: center;
   align-items: center;
-  width: 33px;
-  height: 33px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background-color: rgba(248, 248, 248, 0.3);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: absolute;
+  margin: -127px 0 0 0;
   font-size: 28px;
-  bottom: 50px;
   cursor: pointer;
   transition: 0.3s;
   ${({ pos }) =>
     pos === "left"
       ? css`
-          left: -16px;
+          left: -20px;
         `
       : css`
-          right: -16px;
+          right: -20px;
         `}
   &:hover {
     background-color: rgba(248, 248, 248, 0.7);
@@ -112,42 +101,37 @@ export const ArrowContainer = styled.div<{ pos: "left" | "right" }>`
 `;
 
 const BelowInner = styled.div`
-  position: relative;
-  box-sizing: border-box;
-  width: 488px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   padding: 0;
   color: #00964a;
   font-size: 12px;
-  margin: 8px auto;
 `;
 
 const MyHiOutlineHeart = styled(HiOutlineHeart)`
-  position: absolute;
   font-size: 17px;
+  margin: 0 5px 0 0;
 `;
 
 const MyMdComment = styled(MdComment)`
-  position: absolute;
   font-size: 17px;
-  right: 13px;
+  margin: 0 5px 0 0;
+  display: flex;
 `;
 
 const LikeNum = styled.span`
-  position: absolute;
   left: 17px;
 `;
+
 const CommentNum = styled.span`
-  position: absolute;
   right: 0;
 `;
 
-const Line = styled.div`
-  width: 488px;
-  height: 1px;
-  background-color: #00964a;
-  position: absolute;
-  top: 22px;
-`;
+const Like = styled.div`
+  display: flex;
+` 
+const Comment = styled(Like)``
 
 export default function MainPost({
   postId,
@@ -175,11 +159,13 @@ export default function MainPost({
   };
 
   return (
-    <Wrap>
       <Wrapper>
         <Inner>
-          <Title onClick={SwitchDetail}>{title}</Title>
-          <Author>{author}</Author>
+          <TitleandUser>
+            <UserImg></UserImg>
+            <Title onClick={SwitchDetail}>{title}</Title>
+            <Author>{author}</Author>
+          </TitleandUser>
           <Content>{content}</Content>
           <SlideWrapper>
             {imgUrl.map((url, index) => (
@@ -197,15 +183,18 @@ export default function MainPost({
             </ArrowContainer>
           )}
         </Inner>
+
         <BelowInner>
-          <MyHiOutlineHeart />
-          <LikeNum>{like}</LikeNum>
-          <MyMdComment />
-          <CommentNum>{comment.length}</CommentNum>
-          <Line />
-          <CommentInput />
+          <Like>
+            <MyHiOutlineHeart />
+            <LikeNum>{like}</LikeNum>
+          </Like>
+          <Comment>
+            <MyMdComment />
+            <CommentNum>{comment.length}</CommentNum>
+          </Comment>
         </BelowInner>
+          <CommentInput />
       </Wrapper>
-    </Wrap>
   );
 }

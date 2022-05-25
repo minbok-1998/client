@@ -1,19 +1,17 @@
 import styled from "styled-components";
 
-const Wrap = styled.div``
-
 const Title = styled.h1`
     font-size: 18px;
     font-weight: 500;
     color: #00964A;
-    margin: 0 0 24px 0;
+    margin: 0 0 20px 0;
 `
 const PostTitles = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 282px;
-    height: 210px;
+    width: 100%;
+    height: 230px;
 `
 
 const Post = styled.p`
@@ -36,7 +34,7 @@ function PrintTopPost():JSX.Element {
     }
 
     return(
-        <Wrap>
+        <>
         {/* 키 */}
             <Title>실시간 게시글</Title>
             <PostTitles>
@@ -46,7 +44,7 @@ function PrintTopPost():JSX.Element {
                     )
                 })}
             </PostTitles>
-        </Wrap>
+        </>
     );
 }
 

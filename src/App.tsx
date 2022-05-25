@@ -9,33 +9,19 @@ import styled from "styled-components";
 import DetailPage from "./pages/DetailPage";
 import Side from "./components/mainpost/Side"
 
-const Wrap = styled.div`
-  font-family: Noto Sans KR;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
-  background-color: #eff4ef;
-  box-sizing: border-box;
-`;
-
 function App() {
   return (
     <BrowserRouter>
-      <Wrap>
         <Routes>
-          <Route element={<Side />}>
+          {/* <Route element={<Side />}> */}
             <Route path="/" element={<MainPage />} />
-            <Route path="post" element={<PostPage />} />
-            <Route path="detailPost/:postId" element={<DetailPage />} />
-          </ Route>
+            {/* <Route path="post" element={<PostPage />} />
+            <Route path="detailPost/:postId" element={<DetailPage />} /> */}
+          {/* </ Route>
 
           <Route path="login" element={<LoginPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} /> */}
         </Routes>
-      </Wrap>
     </BrowserRouter>
   );
 }

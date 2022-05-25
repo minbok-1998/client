@@ -7,19 +7,19 @@ interface propsType {
 }
 
 const ImageBox = styled.div<{ transformWidth: string }>`
-  width: 142px;
-  height: 134px;
+  width: 12.5rem;
+  height: 12.5rem;
   background-color: #e5e5e5;
-  margin: 0 14px 0 0;
+  margin: 0 20px 0 0;
   flex-shrink: 0;
   transform: translateX(${(props) => props.transformWidth});
   transition: 1s;
 `;
 
 const MyImg = styled.img`
-  width: 142px;
-  height: 134px;
-  object-fit: contain;
+  width: 12.5rem;
+  height: 12.5rem;
+  object-fit: cover;
 `;
 
 export default function ImageContainer({
