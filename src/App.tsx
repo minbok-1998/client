@@ -17,10 +17,10 @@ function App() {
             <Route path="/" element={<MainPage />} />
             {/* <Route path="post" element={<PostPage />} />
             <Route path="detailPost/:postId" element={<DetailPage />} /> */}
-          {/* </ Route>
+          {/* </ Route> */}
 
           <Route path="login" element={<LoginPage />} />
-          <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
     </BrowserRouter>
   );

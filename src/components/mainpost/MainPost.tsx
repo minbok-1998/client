@@ -37,9 +37,9 @@ const TitleandUser = styled.div`
 `
 
 const UserImg =  styled.img`
-  width: 2.125rem;
-  height: 2.125rem;;
-  background-color: #b4b4b4;
+  width: 3rem;
+  height: 3rem;;
+  background-color: #ced0d0;
   border-radius: 50%;
   margin: 0 20px 0 0;
 `

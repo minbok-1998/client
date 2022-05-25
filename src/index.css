@@ -10,6 +10,14 @@
   -ms-overflow-style: none;
 }
 
+html {
+  background-color: #EFF2F6;
+}
+
+body {
+  padding: 56px 0 0 0;
+}
+
 *::-webkit-scrollbar {
   display: none;
 }

@@ -8,17 +8,42 @@ import { useRecoilState } from "recoil";
 import { scrolledState } from "../recoil/store";
 import Posting from "../components/mainpost/Posting";
 import PrintTopPost from "../components/right/PrintTopPost"
+import PrintMember from "../components/mainpost/PrintMember";
+import Header from "../components/Header";
 
 const Cont = styled.div`
     position: relative;
     width: 62.5%;
     height: 100%;
-    background-color: pink;
     margin: 0 auto;
+    margin-top: 20px;
 `
 
 // Left Side
-const IDK = styled.div``
+const LeftSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 23%;
+  height: auto;
+  top: 0;
+  left: 0;
+  margin: 0 20px 0 20px;
+`
+const IDK = styled.div`
+  width: 100%;
+  height: 552px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 0 0 20px 0;
+`
+
+const Member = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 78px;
+`
 
 const PostList = styled.div`
   height: 100vh;
@@ -116,9 +141,16 @@ export default function MainPage() {
   }, []);
 
   return (
+    <>
+    <Header />
     <Cont>
     {/* Left Side - 아직 결정 안함, intro member,  */}
-    <IDK></IDK>
+    <LeftSide>
+      <IDK />
+      <Member>
+        <PrintMember />
+      </Member>
+    </LeftSide>
     {/* center - Posting */}
     <Posting />
     {/* center - Posts */}
@@ -147,6 +179,7 @@ export default function MainPage() {
         </TopPost>
       </RightSide>
     </Cont>
+    </>
   );
 }
 
